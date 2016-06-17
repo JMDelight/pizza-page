@@ -12,7 +12,7 @@ Pizza.prototype.addTopping = function(topping) {
 Pizza.prototype.getPrice = function() {
   if (this.size === "small") {
     var workingPrice = 8;
-    var priceAdjuster = 0.75;
+    var priceAdjuster = 0.7;
   } else if(this.size === "medium") {
     var workingPrice = 10;
     var priceAdjuster = 1.35;

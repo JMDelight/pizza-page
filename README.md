@@ -18,10 +18,13 @@ _Using this website, you can customize a pizza and get a price for that pizza._
 ## BDD specs used for Pizza Page
 
 * _User can create a pizza object- var pieOne = new Pizza(); - a pizza object named pieOne is created_
-* _User can specify a size for the pizza- var pieOne = new Pizza(medium); - a pizza object named pieOne is created with size property = medium_
+* _User can specify a size for the pizza- var pieOne = new Pizza(large); - a pizza object named pieOne is created with size property = medium_
 * _User can add toppings to a pizza object- pieOne.addTopping(onion); - pieOne.toppings = [onion]_
-* _User can retrieve a price for a pizza object- pieOne.getPrice(); - return $10_
-* _Price retrieved is dependent on size and toppings selected- pieOne.addTopping(onion); pieOne.getPrice(); - return $12_
+* _User can retrieve a price for a pizza object- pieOne.getPrice(); - return $12_
+* _Price retrieved is dependent on size and toppings selected- pieOne.addTopping(onion); pieOne.getPrice(); - return $14_
+* _User will be able to create a Pizza object with the website._
+* _User will be able to add toppings to the pizza with the website._
+* _User will be able to get the price of their pizza with the website._
 
 
 
