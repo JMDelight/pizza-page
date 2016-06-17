@@ -1,3 +1,6 @@
+// Back-end logic
+var pizzaCart = []
+
 function Pizza(size) {
   this.size = size;
   this.toppings = [];
@@ -22,9 +25,25 @@ Pizza.prototype.getPrice = function() {
   } else {
     console.log("There was an illegal size on the Pizza object.");
   }
-  this.toppings.forEach(function(topping) {
-    workingPrice += priceAdjuster;
-  });
-  this.price = "$" + workingPrice;
-  return this.price;
+  for(i = 1; i <= this.toppings.length; i ++) {
+    workingPrice += priceAdjuster
+  };
+    this.price = "$" + workingPrice;
+    return this.price;
 };
+
+// Front-end logic
+$(function() {
+  $("#pizza").submit(function(event) {
+    event.preventDefault();
+    var userSize = $("#pizza-size").val();
+    var newPizza = new Pizza(userSize);
+    var userToppings = $('input[type=checkbox]:checked').map(function(_, toppings) {
+      return $(toppings).val();
+    });
+    newPizza.toppings = userToppings;
+    newPizza.getPrice();
+    pizzaCart.push(newPizza);
+
+  });
+});
