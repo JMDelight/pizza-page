@@ -7,6 +7,10 @@ function Pizza(size) {
   this.price = 8;
 };
 
+Pizza.prototype.pizzaName = function() {
+  return capitalizeFirstLetter(this.size) + " Pizza";
+};
+
 Pizza.prototype.addTopping = function(topping) {
   this.toppings.push(topping);
   return this.toppings;
@@ -14,14 +18,14 @@ Pizza.prototype.addTopping = function(topping) {
 
 Pizza.prototype.getPrice = function() {
   if (this.size === "small") {
-    var workingPrice = 8;
-    var priceAdjuster = 0.7;
+    var workingPrice = 7;
+    var priceAdjuster = 1;
   } else if(this.size === "medium") {
     var workingPrice = 10;
-    var priceAdjuster = 1.35;
-  } else if (this.size === "large") {
-    var workingPrice = 12;
     var priceAdjuster = 2;
+  } else if (this.size === "large") {
+    var workingPrice = 13;
+    var priceAdjuster = 3;
   } else {
     console.log("There was an illegal size on the Pizza object.");
   }
@@ -30,6 +34,10 @@ Pizza.prototype.getPrice = function() {
   };
     this.price = "$" + workingPrice;
     return this.price;
+};
+
+var capitalizeFirstLetter = function(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 // Front-end logic
@@ -44,6 +52,6 @@ $(function() {
     newPizza.toppings = userToppings;
     newPizza.getPrice();
     pizzaCart.push(newPizza);
-
+    $(".pizza-list").append("<li><span class='user-pizza'>" + newPizza.pizzaName() + "    " + newPizza.price + "</span></li>");
   });
 });
