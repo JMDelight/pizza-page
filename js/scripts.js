@@ -1,5 +1,7 @@
 // Back-end logic
-var pizzaCart = []
+var pizzaCart = [];
+var currentSelection = 0;
+var userPizzaNumber = 0;
 
 function Pizza(size) {
   this.size = size;
@@ -9,11 +11,6 @@ function Pizza(size) {
 
 Pizza.prototype.pizzaName = function() {
   return capitalizeFirstLetter(this.size) + " Pizza";
-};
-
-Pizza.prototype.addTopping = function(topping) {
-  this.toppings.push(topping);
-  return this.toppings;
 };
 
 Pizza.prototype.getPrice = function() {
@@ -30,7 +27,7 @@ Pizza.prototype.getPrice = function() {
     console.log("There was an illegal size on the Pizza object.");
   }
   for(i = 1; i <= this.toppings.length; i ++) {
-    workingPrice += priceAdjuster
+    workingPrice += priceAdjuster;
   };
     this.price = "$" + workingPrice;
     return this.price;
@@ -52,6 +49,18 @@ $(function() {
     newPizza.toppings = userToppings;
     newPizza.getPrice();
     pizzaCart.push(newPizza);
-    $(".pizza-list").append("<li><span class='user-pizza'>" + newPizza.pizzaName() + "    " + newPizza.price + "</span></li>");
+    $(".pizza-list").append("<li><span class='user-pizza' id=" + userPizzaNumber +">" + newPizza.pizzaName() + " " + newPizza.price + "</span></li>");
+    userPizzaNumber ++;
+    $(".user-pizza").last().click(function() {
+      currentSelection = this.id.slice(-1);
+      $(".your-toppings").empty();
+      $("#show-pizza").show();
+      $("#show-pizza h2").text(newPizza.pizzaName());
+      for (i = 0; i < pizzaCart[currentSelection].toppings.length; i ++) {
+        console.log("hi");
+        var itemToAppend = pizzaCart[currentSelection].toppings[i];
+        $(".your-toppings").append("<li>" + itemToAppend + "</li>");
+      };
+    });
   });
 });
