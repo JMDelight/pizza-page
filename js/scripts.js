@@ -1,3 +1,3 @@
-function Pizza() {
-  
+function Pizza(size) {
+  this.size = size;
 }
